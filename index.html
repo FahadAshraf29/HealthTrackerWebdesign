@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <meta name="viewport" content="width=device-width">
+    <title>HEALTH TRACKER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+
+      crossorigin="anonymous">
+    
+    <style>
+
+      body{
+        font-family: sans-serif;
+      }
+/*-----------------------------------NAVIGATION BAR STARTS  --------------------------------------*/     
+.navrow
+ {    background: rgba( 0, 0, 0, 0.35 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 6px );
+      -webkit-backdrop-filter: blur( 6px );
+      border-radius: 10px;
+      border: 1px solid rgba( 255, 255, 255, 0.1 );
+      overflow: hidden;
+    /*  margin: 20px 50px 0px 50px;*/
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.navrow a 
+{
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  
+}
+
+.navrow a:hover 
+{
+  background-color: #ddd;
+  color: black;
+  opacity: 0.5;
+}
+
+.navrow a.homebutton 
+{
+  background-color: #e98d04cc;
+  color: white;
+}
+
+.navrow .search-container 
+{
+  float: right;
+}
+
+.navrow .search-container input[type=text]
+{
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  -webkit-border-radius: 10px 0px 0px 10px;
+  border-radius: 10px 0px 0px 10px;
+  background-color: rgb(221, 221, 221);
+}
+
+.navrow .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  -webkit-border-radius: 0px 10px 10px 0;
+  border-radius: 0px 10px 10px 0px;
+}
+
+
+.popup{
+color: maroon;
+display: none;
+}
+.navrow .search-container button:hover + .popup
+{
+  display: block;
+  /*background: #ccc;*/
+}
+
+
+
+
+.dropdown .task{
+  background-color: inherit;
+  border: none;
+}
+
+/*-----------------------------------NAVIGATION BAR ENDS  --------------------------------------*/     
+
+/*-----------------------------------Breadcrumb starts  --------------------------------------*/ 
+.breadcrumb{
+  width: 90%;
+  margin: auto;
+  color: #800016;
+  height: 300px;
+  border-radius: 10px;
+  background-color: #e9ecef;
+}
+h1{
+  font-size: 100px;
+  margin-top: 100px;
+
+}
+.img-container {
+          display: inline-block;
+          width: 200px;
+         }
+         .img-container > img {
+            width: 200px;
+            height: 150px;
+         }
+/*-----------------------------------Breadcrumb ends  --------------------------------------*/ 
+
+/*-----------------------------------CIRCULAR GRAPH WITH LEGEND BLOCK   --------------------------------------*/                
+
+        /*-----------------------------------------LEGEND------------------------------------------*/
+        .settingsbutton:hover{
+        cursor:pointer;
+        }
+        
+        .GRAPH
+        {
+          width: 80%;
+          margin: auto;
+          position: relative;
+          padding-top: 200px;
+        }
+        .chart
+        {
+            margin-top: 30px;
+            float: left;
+        }
+        .graphlegend
+        {
+            
+            margin-left: 20px;
+            float: left;
+        }
+        .box{
+          float: right;
+          text-align: center;
+          width: 25%;
+          border: 2px solid rgb(110, 20, 20);
+          box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+          border-radius: 10%;
+      
+        }
+        .box h3{
+            padding-top: 10px;
+            color: purple;
+
+        }
+        .box p{
+          padding: 10px;
+        }
+
+        .username
+        {
+          color: red;
+        }
+
+        .legend li {
+            width: 70px;
+            text-align: center;
+            background: rgb(255, 255, 255);
+        }
+
+
+        .legend {
+            margin: 0;
+            padding: 0 0 15px 10px;
+            font-size: 20px;
+        }
+
+       .data  {
+        
+            list-style-type: none ;
+        }
+
+
+        .type {
+            margin: 0;
+            padding: 6px;
+            font-size: 15px;
+        }
+
+        .type.cal {
+            border-top: 6px dotted #800016;
+        }
+
+        .type.steps {
+            border-top: 6px dotted #4e5a5a;
+        }
+
+        .type.Bpm {
+            border-top: 6px dotted #0a648a;
+        }
+
+
+        /*------------------------------------------ CHART ------------------------------------------*/
+
+        .chart {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            border-radius: 100%
+        }
+
+        p.text1 
+        {
+           background: #ffffff;
+            position: absolute;
+            text-align: center;
+            width: 130px;
+            height: 130px;
+            font-size: 25px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+           border-radius: 50%;
+            padding: 15% 0 0;
+            overflow: hidden;
+        }
+
+
+        .inCircle {
+            border-radius: 50%;
+            clip: rect(0px, 200px, 200px, 100px);
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+
+        .pos {
+            border-radius: 50%;
+            clip: rect(0px, 100px, 200px, 0px);
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+
+        #line1 .pos {
+            background-color: #800016;
+            transform: rotate(90deg);
+        }
+
+        #line2 {
+            transform: rotate(76deg);
+        }
+
+        #line2 .pos {
+            background-color: #4e5a5a;
+            transform: rotate(140deg);
+        }
+
+        #line3 {
+            transform: rotate(215deg);
+        }
+
+        #line3 .pos {
+            background-color: #0a648a;
+            transform: rotate(146deg);
+        }
+            /*-----------------------------------CIRCULAR GRAPH WITH LEGEND BLOCK EnDS--------------------------------------*/
+
+
+
+/*for cards*/
+.row {
+        z-index: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 100px 30px 0px 30px;
+        margin-bottom: 100px;
+    }
+h2{
+  text-align: center;
+  margin-top: 500px;
+
+}
+    .row .col {
+        margin: 20px auto;
+        width: 200px;
+        height: 200px;
+        border-radius: 40px;
+        box-shadow: 4px 4x 20px 6px rgba(0, 0, 0, 0.25), -4px -4px 20px 6px rgba(0, 0, 0, 0.22);
+        cursor: pointer;
+        transition: 0.4s;
+    }
+
+    .row .col .image {
+        width: inherit;
+        height: inherit;
+        border-radius: 40px;
+    }
+
+    .row .col .image img {
+        width: inherit;
+        height: inherit;
+        border-radius: 40px;
+        object-fit: cover;
+    }
+
+
+    .row .col .image:hover {
+        transform: scale(1.2);
+        box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
+            -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+    }
+
+/* CARD ENDS */
+
+/*FOOTER STARTS*/
+    .footer{
+      margin-top: 300px;
+      width: 100%;
+      height: 100px;
+      background-image: linear-gradient(rgb(160, 142, 142), rgb(6, 119, 248));
+    
+
+    }
+/*FOOTER ENDS*/
+
+</style></head>
+  <body>
+    <!--          Navigation Bar       -->
+    <div class="navrow">
+      <a class="homebutton" href="index.html">Home</a>
+      
+
+
+
+      <a  class="dropdown">
+        <select size="1" name="links" class="task" onchange="window.location.href=this.value;">
+          <option disabled selected value>Tasks </option>
+          <option value="sleep.html">Sleep</option>
+          <option value="workout.html">Workout</option>
+          <option value="food.html">Food</option>
+          <option value="steps.html">Steps</option>
+        </select>
+      </a>
+      <a class="settingsbutton" onclick="window.location.href='settings.html'">Settings</a>
+      <div class="search-container">
+          <input class="searchbar" type="text" placeholder="Search" name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+          <div class="popup">Its not responsive yet.</div>
+      </div>
+    </div>
+    <!--          Navigation Bar ENDS   -->
+
+
+    <div class="breadcrumb">
+      <h1>
+        <span class="img-container">
+          <img src="./index.png" alt="home img">
+        </span>Home
+
+      </h1>
+    </div>
+
+
+
+
+
+
+ 
+    <!--          CIRCULAR GRAPH WITH LEGEND BLOCK                   -->
+    <div class="GRAPH" >
+  <!---    <div class="chart-area area" > -->
+        <div class="chart">
+          <div id="line1" class="inCircle">
+            <div class="pos cal"></div>
+          </div>
+          <div id="line2" class="inCircle">
+            <div class="pos steps"></div>
+          </div>
+          <div id="line3" class="inCircle">
+            <div class="pos Bpm"></div>
+          </div>
+          <!-- Text under chart -->
+          <p class="text1" style="padding-top: 10%;">Daily<br>
+            <span class="text2">Challenges</span></p>
+        </div>
+     <!----> 
+     <div class="graphlegend">
+      <ul class="legend data">
+        <li>
+          <p class="cal type text2">Calories burnt</p>
+          <p class="legend">25%</p>
+        </li>
+        <li>
+          <p class="steps type text2">Steps</p>
+          <p class="legend">39%</p>
+        </li>
+        <li>
+          <p class="Bpm type text2">Bpm</p>
+          <p class="legend">36%</p>
+        </li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Welcome Back!</h3>
+      <p><span class="username">Guest123</span> you are back after 1 week and 3 days. Check your statistics for every task.</p>
+    </div>
+
+  </div>
+    <!--   CIRCULAR GRAPH WITH LEGEND ENDS-->
+  
+    <!--    TILES -->
+    
+
+
+    <h2>Select your task</h2>
+    <div class="row" >
+      
+      <div class="col" style="padding-top:10px;">
+        <div class="image"> <img alt="Sleep icon" style="max-height:500px;max-width:500px;"
+          onclick="window.location.href='sleep.html'"
+
+            src="https://icon-library.com/images/sleep-icon/sleep-icon-4.jpg" height="90%"
+
+            width="90%"> <label style="padding-top: 10px; padding-left: 80px;">
+            Sleep </label> </div>
+      </div>
+      <div class="col" style="padding-top:10px;">
+        <div class="image"> <img alt="workout icon" style="max-height:500px;max-width:500px;"
+
+          onclick="window.location.href='Workout.html'"
+            src="https://cdn-icons-png.flaticon.com/512/3043/3043210.png" height="90%"
+
+            width="90%"> <label style="padding-top: 10px; padding-left: 80px;">
+            Workout </label> </div>
+      </div>
+      <div class="col" style="padding-top:10px;">
+        <div class="image"> <img alt="food icon" style="max-height:500px;max-width:500px;"
+
+          onclick="window.location.href='food.html'"
+            src="https://www.graphicsprings.com/filestorage/stencils/2b41f82dadc96b9138797f4d077e9e1d.png?width=500&amp;height=500"
+
+            height="90%" width="90%"> <label style="padding-top: 10px; padding-left: 80px;">
+            Food </label> </div>
+      </div>
+      <div class="col" style="padding-top:10px;">
+        <div class="image"> <img alt="foot steps" style="max-height:500px;max-width:500px;"
+
+          onclick="window.location.href='steps.html'"
+
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiROZPEINzdQzfI_CDpIs339nACxUT8dbrSA&amp;usqp=CAU"
+
+            height="90%" width="90%"> <label style="padding-top: 10px; padding-left: 80px; ">
+            Steps </label> </div>
+      </div>
+      <div class="col" style="padding-top:10px;">
+        <div class="image"> <img alt="settings icon" style="max-height:500px;max-width:500px;"
+
+          onclick="window.location.href='settings.html'"
+
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwZr9_vUv2pcdb-xxYXVniOlToXOZQM4x1yw&amp;usqp=CAU"
+
+            height="90%" width="90%"> <label class="icon title" style="padding-top: 10px; padding-left: 80px; ">
+            Settings </label> </div>
+      </div>
+    </div>
+    <!-- TILE ENDS-->
+    <!--          FOOTER -->
+    <div class="footer" > A project by Project Team D <p>@copright2021</p></div>
+    <!--          FOOTER BLOCK ENDS -->
+  </body>
+</html>

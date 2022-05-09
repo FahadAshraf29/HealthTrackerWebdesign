@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+    <head>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+            rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+            crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+        <link rel="stylesheet" href="circle.css">
+     
+
+
+        <style type="text/css">
+          /* -------------------------------NAVIGATION BAR STARTS--------------------*/
+          .navrow
+ {    background: rgba( 0, 0, 0, 0.35 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 6px );
+      -webkit-backdrop-filter: blur( 6px );
+      border-radius: 10px;
+      border: 1px solid rgba( 255, 255, 255, 0.1 );
+      overflow: hidden;
+    /*  margin: 20px 50px 0px 50px;*/
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.navrow a 
+{
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  
+}
+
+.navrow a:hover 
+{
+  background-color: #ddd;
+  color: black;
+  opacity: 0.5;
+}
+
+.navrow .search-container 
+{
+  float: right;
+}
+
+.navrow .search-container input[type=text]
+{
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  -webkit-border-radius: 10px 0px 0px 10px;
+  border-radius: 10px 0px 0px 10px;
+  background-color: rgb(221, 221, 221);
+}
+
+.navrow .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  -webkit-border-radius: 0px 10px 10px 0;
+  border-radius: 0px 10px 10px 0px;
+}
+
+
+.popup{
+color: maroon;
+display: none;
+}
+.navrow .search-container button:hover + .popup
+{
+  display: block;
+  /*background: #ccc;*/
+}
+
+
+
+
+.dropdown
+{
+  background-color: #e98d04cc;
+  color: white;  
+}
+.dropdown .task{
+  background-color: #e98d04cc;
+  color: white;
+  border: none;
+}
+
+.settingsbutton:hover{
+        cursor:pointer;
+        }
+/*-----------------------------------NAVIGATION BAR ENDS  --------------------------------------*/     
+
+/*-----------------------------------Breadcrumb starts  --------------------------------------*/ 
+.breadcrumb{
+  width: 90%;
+  margin: auto;
+  color: #800016;
+  height: 300px;
+  border-radius: 10px;
+  background-color: #e9ecef;
+}
+h1{
+  font-size: 100px;
+  margin-top: 100px;
+
+}
+/*-----------------------------------Breadcrumb ends  --------------------------------------*/ 
+
+         .title {
+           margin-top: 50px;
+         }
+         .input-field {
+           margin-bottom: 30px;
+           font-size: 25px;
+           position: relative;
+           width: 560px;
+           float: left;
+         }
+         .input-field > label {
+          text-align: right;
+           width: 330px;
+           padding-right: 20px;
+           float: left;
+         }
+         .input-field > input {
+           width: 150px;
+           float: left;
+         }
+         .pie-container {
+          display: inline-block;
+          width: 200px;
+          position: absolute;
+          right: 20px;
+          top: 0;
+          padding-top: 50px;
+         }
+         form { 
+          display: inline-block;
+          width: 66%;
+         }
+         .form-container{
+          position: relative;
+          width: 70%;
+          margin: 100px 200px 0px 200px;
+          border: 3px solid lightblue;
+          border-radius: 50px;
+          padding: 50px; 
+
+         }
+         .blue {
+           background-color: lightblue;
+         }
+       
+         .line-chart-title {
+           text-align: center;
+           font-size: 24px;
+         }
+         .line-chart-container {
+           position: relative;
+           width: 70%;
+           margin: 60px 200px 0px 200px;
+          border: 3px solid lightblue;
+          border-radius: 50px;
+          padding: 50px; 
+         }
+         .img-container {
+          display: inline-block;
+          width: 200px;
+         }
+         .img-container > img {
+            width: 200px;
+            height: 150px;
+         }
+         
+        </style>
+        <style>
+          body {font-family: Arial, Helvetica, sans-serif;}
+          
+          /* The Modal (background) */
+          .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+          }
+          
+          /* Modal Content */
+          .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+          }
+          
+          /* The Close Button */
+          .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+          }
+          
+          .close:hover,
+          .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          .chart-x-axis {
+            position: absolute;
+            display: inline-block;
+            width: 100px;
+            z-index: 2;
+            top: 60px;
+            left: 36px;
+            font-size: 13px;
+          }
+          .chart-y-axis {
+            position: absolute;
+            display: inline-block;
+            width: 100px;
+            z-index: 2;
+            bottom: 30px;
+            right: 0px;
+            font-size: 13px;
+          }
+          </style>
+    </head>
+<body>
+
+   <!--          Navigation Bar       -->
+   <div class="navrow">
+    <a class="homebutton" href="index.html">Home</a>
+    
+
+
+
+    <a  class="dropdown">
+      <select size="1" name="links" class="task" onchange="window.location.href=this.value;">
+        <option disabled selected value>Tasks </option>
+        <option value="sleep.html">Sleep</option>
+        <option value="workout.html">Workout</option>
+        <option value="food.html">Food</option>
+        <option value="steps.html">Steps</option>
+      </select>
+    </a>
+    <a class="settingsbutton" onclick="window.location.href='settings.html'">Settings</a>
+    <div class="search-container">
+        <input class="searchbar" type="text" placeholder="Search" name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+        <div class="popup">Its not responsive yet.</div>
+    </div>
+  </div>
+  <!--          Navigation Bar ENDS   -->
+
+
+  <div class="breadcrumb">
+    <h1>Steps
+      <span class="img-container">
+        <img src="./steps.png" alt="steps-img">
+      </span>
+    </h1>
+  </div>
+  
+
+    <div class="form-container">
+      <form>
+        <div class="input-field">
+            <label for="food_type">Where did you go today:</label> 
+            <select id="food_type_selected" onchange="foodTypeOnChange(this.value)">
+              <option value="school">--</option>
+              <option value="school">school</option>
+              <option value="work">work</option>
+              <option value="shopping">shopping</option>
+              <option value="gym">gym</option>
+            </select>
+               
+        </div>
+        <div class="input-field">
+            <label for="calorie_eaten">Steps estimation: </label>
+            <span id="calorie_eaten" name="calorie_eaten" onchange="calorieOnChange(this.value)">--</span>
+        </div>
+    
+    
+  
+  
+      </form>
+    </div>
+
+    <div class="form-container">
+      <form>
+        <div class="input-field">
+            <label for="calorie_consumpted">How many steps did you walked today:</label>
+            <input type="number" id="calorie_consumpted" name="calorie_consumpted" onchange="calorieOnChange(this.value)">   
+        </div>
+        <div class="input-field">
+            <label for="calorie_goal">Steps goal for today:</label>
+            <input type="number" id="calorie_goal" name="calorie_goal" onchange="calorieOnChange(this.value)">
+        </div>
+        <div class="input-field">
+            <label for="left_to_goal">Left to goal:</label>
+            <span class="blue" type="number" id="left_to_goal" name="left_to_goal">--</span>
+        </div>
+      </form>
+      <div class="pie-container">
+        <div id="left_to_goal_circle" class="c100 center">
+          <span id="left_to_goal_pie">--</span>
+          <div class="slice">
+              <div class="bar"></div>
+              <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!--下拉菜单-->
+  
+</div>
+
+  
+  <div class="row">
+    <div class="line-chart-container">
+      <div class="line-chart-title">
+        Steps walked in 30 days
+      </div>
+      <div class="chart-x-axis">
+        (Steps) 
+      </div>
+      <div class="chart-y-axis">
+        (Days)
+      </div>
+      <canvas id="myChart" style="width:100%;max-width:1200px; height: 400px;"></canvas>
+    </div>
+    
+  </div>
+</div>
+<br>
+<br>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Calorie consumpted..</p>
+  </div>
+
+</div>
+
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+  
+  // Get the button that opens the modal
+  // var btn = document.getElementById("myBtn");
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks the button, open the modal 
+  // btn.onclick = function() {
+  //   modal.style.display = "block";
+  // }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  </script>
+  
+  <script>
+    function calorieOnChange() {
+      var x = document.getElementById("calorie_consumpted").value;
+      var y = document.getElementById("calorie_goal").value;
+      if(!!x && !!y){
+        // 0, undefined, null
+        console.log(y-x);
+        document.getElementById("left_to_goal").innerHTML = y-x;
+        document.getElementById("left_to_goal_pie").innerHTML = Math.floor(100 * (x)/y) + "%" ;
+        document.getElementById("left_to_goal_circle").className = "c100 center p" + Math.floor(100 * (x)/y);
+      }
+      // document.getElementById("demo").innerHTML = "You selected: " + x;
+    }
+
+    function foodTypeOnChange(value){
+      var map = {
+        school: "2000", 
+        work: "3000",
+        shopping: "2500",
+        gym: "10000",
+      };
+      console.log(value);
+      document.getElementById("calorie_eaten").innerHTML = map[value];
+    }
+    </script>
+  
+  <script>
+    var xValues = [];
+    var yValues = [];
+    for(var i = 1; i < 31; i++) {
+      xValues.push(i);
+      yValues.push(8000 + Math.floor(10000 * Math.random()));
+    }
+    new Chart("myChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+          yAxes: [{ticks: {min: 1000, max:20000}}],
+        },
+      }
+    });
+    </script>
+</body>
+</html>
